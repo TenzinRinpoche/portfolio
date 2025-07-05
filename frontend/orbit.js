@@ -78,12 +78,19 @@ const orbitradius = 3;
 function animate() {
   requestAnimationFrame(animate);
 
-  const z = orbitradius*Math.sin(angle)
-  const y = orbitradius*Math.cos(angle)
-  lightmesh.position.set(0,y,z)
-  light.position.set(0,y,z)
-  // camera.position.z = 2+x;
-  // lightmesh.rotation.x = Math.PI / (Math.sin(2*Math.PI/angle));
+  //Set position of object
+  // const z = orbitradius*Math.sin(angle)
+  // const y = orbitradius*Math.cos(angle)
+  
+  // lightmesh.position.set(0,y,z)
+  // light.position.set(0,y,z)
+  
+if (positionVector) {
+  lightmesh.position.copy(positionVector);
+  light.position.copy(positionVector);
+}
+
+  //Set Inclination of Camera
   xc = altitude * Math.cos(inclination.value * Math.PI / 180)
 yc = altitude * Math.sin(inclination.value * Math.PI / 180)
 
