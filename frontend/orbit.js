@@ -1,4 +1,4 @@
-
+// https://www.solarsystemscope.com/textures/
 const scene = new THREE.Scene()
 scene.background = new THREE.Color(0x808080);
 const camera = new THREE.PerspectiveCamera(
@@ -15,10 +15,11 @@ const altitude = 7
 let isDragging = false;
 let previousMouseY = 0;
 
-function updateCameraFromAngle() {
 
-
-}
+const loader = new THREE.TextureLoader();
+loader.load('starfield.jpg', function (texture) {
+  scene.background = texture;
+});
 
 
 const speedControl = document.getElementById('speedControl');
@@ -56,6 +57,21 @@ lightmesh.position.copy(lightposition)
 light.position.copy(lightposition)
 scene.add(light)
 scene.add(lightmesh)
+
+const spriteMaterial = new THREE.SpriteMaterial({
+  map: loader.load('glow.png'),     // should be a white-to-transparent radial gradient
+  color: 0xffffff,                  // pure white
+  transparent: true,
+  opacity: 1.0,
+  depthWrite: false,
+  depthTest: true,
+  blending: THREE.AdditiveBlending,
+  sizeAttenuation: true             // ← this is key for consistent glow across distances
+});
+
+const glow = new THREE.Sprite(spriteMaterial);
+glow.scale.set(0.1, 0.1, 0.5); // Make the glow bigger than the light sphere
+lightmesh.add(glow);
 
 let angle = 0;
 const orbitradius = 3;
