@@ -45,7 +45,7 @@ sphere.add(outline); // attach the outline to the box
 
 //create light and lightbox
 const lightposition = new THREE.Vector3(0,0,0) //default position
-const lightgeom = new THREE.SphereGeometry(0.05,70,70)
+const lightgeom = new THREE.SphereGeometry(0.1,70,70)
 const lightbox = new THREE.MeshBasicMaterial({color: 0xffffff })
 const lightmesh = new THREE.Mesh(lightgeom, lightbox)
 const light = new THREE.DirectionalLight(0xffffff, 1)
