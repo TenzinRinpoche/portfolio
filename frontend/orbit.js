@@ -12,10 +12,6 @@ const inclination = document.getElementById('inclination');
 const angles = inclination.value * Math.PI / 180;
 const altitude = 7
 
-let isDragging = false;
-let previousMouseY = 0;
-
-
 const loader = new THREE.TextureLoader();
 loader.load('starfield.jpg', function (texture) {
   scene.background = texture;
@@ -78,17 +74,17 @@ const orbitradius = 3;
 function animate() {
   requestAnimationFrame(animate);
 
-  //Set position of object
-  // const z = orbitradius*Math.sin(angle)
-  // const y = orbitradius*Math.cos(angle)
+  // Set position of object
+  const z = orbitradius*Math.sin(angle)
+  const y = orbitradius*Math.cos(angle)
   
-  // lightmesh.position.set(0,y,z)
-  // light.position.set(0,y,z)
+  lightmesh.position.set(0,y,z)
+  light.position.set(0,y,z)
   
-if (positionVector) {
-  lightmesh.position.copy(positionVector);
-  light.position.copy(positionVector);
-}
+// if (positionVector) {
+//   lightmesh.position.copy(positionVector);
+//   light.position.copy(positionVector);
+// }
 
   //Set Inclination of Camera
   xc = altitude * Math.cos(inclination.value * Math.PI / 180)
