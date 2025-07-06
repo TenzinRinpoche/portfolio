@@ -59,6 +59,8 @@ window.addEventListener('click', (event) => {
     // Trigger your logic here
     red = 1 - red; //Toggle red on and off
     lightmesh.material.color.set(red ? 0xff0000 : 0xffffff); // becomes red eh
+    window.location.href = 'about.html';
+
 
     const slider = document.getElementById('inclination');
     let current = +slider.value;
