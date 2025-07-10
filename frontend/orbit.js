@@ -59,7 +59,8 @@ window.addEventListener('click', (event) => {
     // Trigger your logic here
     red = 1 - red; //Toggle red on and off
     lightmesh.material.color.set(red ? 0xff0000 : 0xffffff); // becomes red eh
-    window.location.href = 'about.html';
+    light.color.set(red ? 0xff0000 : 0xffffff);
+    // window.location.href = 'about.html';
 
 
     const slider = document.getElementById('inclination');
@@ -69,17 +70,17 @@ window.addEventListener('click', (event) => {
     const interval = setInterval(() => {
     const remaining = max - current;
 
-      if (remaining <= 0.1) {
+      if (remaining <= 0.2) {
       slider.value = max.toFixed(3);
       clearInterval(interval);
       return;
       }
 
   // Acceleration: normalized so it's 1 at the start, 0 near the end
-    let acceleration = remaining / max;
+    let acceleration = (remaining+0.5) / max;
 
   // Control speed: max step of 0.5 scaled by acceleration
-    const step = 0.5 * acceleration;
+    const step = 2 * acceleration;
 
     current += step;
     slider.value = current.toFixed(3);
@@ -87,6 +88,12 @@ window.addEventListener('click', (event) => {
   }
 });
 
+// Want to add a damping equation to get a slight oscilation as it hits the end.
+// A damping equation will need to basically make the acceleration positive or negative depending on the distance from the origin.
+//The acceleration is higher the further you are from the origin.
+// But there needs to be an intertia so that the object travels OVER the origin and then travels back towards it.
+// So you need to create first an equation for a force which drags the object towards the origin, and get the associated velocity.
+// Then you need to create a damping equation for that force to make it oscillate and tend to zero.
 
 
 //Create Central Sphere
