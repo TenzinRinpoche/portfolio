@@ -77,10 +77,10 @@ window.addEventListener('click', (event) => {
       }
 
   // Acceleration: normalized so it's 1 at the start, 0 near the end
-    let acceleration = (remaining+2) / max;
+    let acceleration = (remaining+0.5) / max;
 
   // Control speed: max step of 0.5 scaled by acceleration
-    const step = 20 * acceleration;
+    const step = 2 * acceleration;
 
     current += step;
     slider.value = current.toFixed(3);
